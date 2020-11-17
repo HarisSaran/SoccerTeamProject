@@ -26,7 +26,7 @@ if($isset) {
 <div align="center">
 
 <h3>SOCCER LOGIN FORM</h3>
-    <form id="login-form" method="post" action="../database/authenticate.php" >
+    <form id="login-form" method="post" action="functions/authenticate.php" >
         <table border="0.5" >
             <tr>
                 <td><label for="user_id">User Name</label></td>

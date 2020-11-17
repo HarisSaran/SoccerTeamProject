@@ -2,10 +2,12 @@
 
  require('functions/menu.php');
  require('functions/databaseConnection.php');
- $connection= getConnection();
- if($connection){
+ require('functions/db_connect.php');
+ //$connection= getConnection();
 
-	 saveToDatabase();
+
+ if($connection){
+	 saveToDatabase($connection);
  }
 ?>
 
@@ -30,8 +32,7 @@
 					<li><label>Address: <input type="text" name="address"></label></li>
 					<li><label>User Name: <input type="text" name="userName"></label></li>
 					<li><label>Password: <input type="Password" name="password"></label></li>
-					<li><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></li>
-                        
+					<li><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></li>   
 				</ul>
    			 </form>
 		</div>
