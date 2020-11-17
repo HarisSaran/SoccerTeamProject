@@ -30,6 +30,7 @@
 					<li><label>Address: <input type="text" name="address"></label></li>
 					<li><label>User Name: <input type="text" name="userName"></label></li>
 					<li><label>Password: <input type="Password" name="password"></label></li>
+					<li><label>TEST: <input type="Password" name="password"></label></li>
 					<li><input type="submit" value="Submit" /> <input type="reset" value="Reset"/></li>
                         
 				</ul>
