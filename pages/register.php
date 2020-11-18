@@ -1,7 +1,7 @@
 <?php 
 
  require('functions/menu.php');
- require('functions/databaseConnection.php');
+ require('functions/saveMember.php');
  require('functions/db_connect.php');
  //$connection= getConnection();
 

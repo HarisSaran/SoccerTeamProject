@@ -3,22 +3,6 @@
 require("passwordManager.php");
 //require("db_connect.php");
 
-//function getConnection(){   
-
-//     // define('DB_DSN','mysql:host=localhost;dbname=soccerteams;charset=utf8');
-//     // define('DB_USER','SoccerTeams');
-//     // define('DB_PASS','Password01');
-
-//     //creating a PDO object called $db
-//     //error handling
-// try {
-//     $connection = new PDO(DB_DSN, DB_USER, DB_PASS);
-//     } catch (PDOException $e) {
-//         print "Error: ". $e->getMessage();
-//         die(); //forcing the execution to stop on errors. 
-//     }
-//     return $connection;
-// }
 
 // Pass the form information into variables
 function saveToDatabase($connection){
@@ -41,16 +25,6 @@ function saveToDatabase($connection){
    $statement = $connection->prepare($query);
    $statement->execute();
    $statement->closeCursor();
-//    if ($connection->query($query) === TRUE)
-//    {
-//    echo "feedback sucessfully submitted";
-//    }
-//    else
-//    {
-//    echo "Error: " . $query . "<br>" . $connection->error;
-//    }
-//    $connection->close();
-
 }
 
 ?>

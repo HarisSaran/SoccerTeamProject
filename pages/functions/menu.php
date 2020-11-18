@@ -23,8 +23,9 @@ function getMenu(){
         $endMenue='<div class="animation start-home"></div></nav></div>';
         $additionalMenue = '';
         if(getUserType()=="admin"){
-            $additionalMenue ='<a href="#">Add League</a>
-            <a href="#">Add Team</a>';
+            $additionalMenue ='<a onClick="goToPage(\'league.php\')">Add League</a>
+                               <a onClick="goToPage(\'team.php\')">Add Team</a>
+                               <a onClick="goToPage(\'player.php\')">Add Player</a>';
         }
         $menu= '
         <div style="height: 60px;">
