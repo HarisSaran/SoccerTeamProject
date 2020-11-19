@@ -30,14 +30,14 @@ function getMenu(){
         $menu= '
         <div style="height: 60px;">
         <nav> 
-            <a onClick="goToPage(\'index.php\')">Home</a>
+            <a onClick="goToPage(\'main.php\')">Go To Main</a>
             <a href="#">About</a>
             <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
     }else{
         $menu= '
         <div style="height: 60px;">
         <nav> 
-            <a onClick="goToPage(\'index.php\')">Home</a>
+            <a onClick="goToPage(\'main.php\')">Go To Main</a>
             <a href="#">About</a>
             <a onClick="goToPage(\'soccerLogin.php\')">Login</a>
             <a onClick="goToPage(\'register.php\')">Register</a>

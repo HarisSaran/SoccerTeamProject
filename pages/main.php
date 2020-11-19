@@ -2,9 +2,12 @@
 // every page that requires a login requires
  require('functions/login.php');
  require('functions/menu.php');
+ require('functions/db_connect.php');
+
 require('functions/helperQuiries.php');
+
 	isUserLogedIn();
-	$teams = getTeams();
+	$teams = getTeams($connection);
 ?>
 
 	
@@ -15,17 +18,36 @@ require('functions/helperQuiries.php');
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
 
 	</head>
-	<body>
+	<body class="body_bg">
 		<?php
 		  echo getMenu();
 		?>
-		<div>
-		<form id="register-form" name="register-form" class="form-class" method="post" action="./register.php">
+		<div align="center">
+		<form  id="register-form" name="register-form" class="form-class" method="post" action="./register.php">
 				 <table >
 					 <caption>Registered Teams</caption>
+					 <thead>
+						<tr>
+						<!-- <th>Logo</th> -->
+						<th>Name</th>
+						<th>Rank</th>
+						<th>League</th>
+						<th>Country</th>
+						<th>Coach Name</th>
+						</tr>
+					</thead>
 					 <tbody >
 
-
+					 <?php foreach($teams as $team): ?>
+						<tr>
+						
+						<td><?=$team["tName"]?></td>
+						<td><?=$team["tRank"]?></td>
+						<td><?=$team["lName"]?></td>
+						<td><?=$team["country"]?></td>
+						<td><?=$team["coachName"]?></td>
+						</tr>
+					 <?php endforeach ?>
 
 					</tbody>
 				</table>

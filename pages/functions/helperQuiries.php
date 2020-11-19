@@ -34,5 +34,23 @@
         return $players;
     }
     
+    // returns all teams in the databsae
+    // t.teamLogo as logo,
+    function getTeams($connection){
+        $query = "SELECT t.teamName as tName, t.teamRank as tRank, l.leagueName as lName, l.Country as country,
+        concat(p.firstName, ' ' ,p.lastName) as coachName
+        FROM Teams t
+        INNER JOIN Leagues l ON l.leagueID=t.leagueID
+        INNER JOIN Persons p on p.personID=t.coachID;";
+
+            $statement = $connection->prepare($query);     
+
+            $statement->execute();
+            $teams= $statement->fetchAll();
+
+            return $teams;
+
+    }
+
     
 ?>

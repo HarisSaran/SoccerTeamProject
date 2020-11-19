@@ -1,6 +1,6 @@
 .body_bg
 { 
-background-color:#9F81F7; 
+background-color:#897ab6; 
 }
 
 .form-class{ 
@@ -11,3 +11,12 @@ padding:9px 9px;
 width:450px; 
  border-radius:5px; 
 }
+
+.mainform-class{ 
+
+    background:#A9D0F5; 
+    border: 3 px solid #eeeee; 
+    padding:9px 9px;
+    width:650px; 
+     border-radius:5px; 
+    }
