@@ -10,8 +10,15 @@ if (isset($_POST['user_id']) and isset($_POST['user_pass'])){
 // Assigning POST values to variables.  Data entered in fields for user_id is stored in $username
 //data entered in user_pass is stored in $password 
 // data is entered in soccerLogin.php
+
+// $username = filter_input(INPUT_POST, 'user_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+// $password = filter_input(INPUT_POST, 'user_pass', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
 $username = $_POST['user_id'];
+$username = filter_var($username, FILTER_SANITIZE_STRING);
+
 $password = $_POST['user_pass'];
+
 // if the username and password are admin admin then set $admin variable to true (temporary)
 
 // CHECK FOR THE RECORD FROM TABLE
@@ -46,6 +53,7 @@ if(isPasswordValid($dbpassword,$password,$salt)){
 	
 	$statement->closeCursor();
 	echo "<script type='text/javascript'>alert('Invalid Login Credentials');window.location='../soccerLogin.php'</script>";
+	
 }
 
 }

@@ -12,6 +12,8 @@
 	<head>
 		<script src="../javascripts/logout.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
+		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
+
 	</head>
 	<body>
 		<?php

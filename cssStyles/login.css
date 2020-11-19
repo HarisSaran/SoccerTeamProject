@@ -1,9 +1,9 @@
-#body_bg
+.body_bg
 { 
 background-color:#9F81F7; 
 }
 
-#login-form{ 
+.form-class{ 
 
 background:#A9D0F5; 
 border: 3 px solid #eeeee; 

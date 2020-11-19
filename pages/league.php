@@ -22,13 +22,16 @@
 		<script src="../javascripts/logout.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
+		
+
+
 	</head>
-	<body>
+	<body class="body_bg">
 		<?php
 		  echo getMenu();
 		?>
-		<div>
-        <form id="league-form" method="post" action="league.php">
+		<div align="center">
+        <form id="league-form" class="form-class" method="post" action="league.php">
 				 <ul>
 					<li><label>League Name: <input type="text" name="leagueName" id="leagueName"></label></li>
 					<li><label>World Rank: <input type="text" name="worldRank" id="worldRank"></label></li>
