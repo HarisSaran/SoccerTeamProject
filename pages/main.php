@@ -2,9 +2,9 @@
 // every page that requires a login requires
  require('functions/login.php');
  require('functions/menu.php');
-
+require('functions/helperQuiries.php');
 	isUserLogedIn();
-	
+	$teams = getTeams();
 ?>
 
 	
@@ -20,7 +20,17 @@
 		  echo getMenu();
 		?>
 		<div>
-			<h1>DISPLAY SOCCER TEAMS</h1>
+		<form id="register-form" name="register-form" class="form-class" method="post" action="./register.php">
+				 <table >
+					 <caption>Registered Teams</caption>
+					 <tbody >
+
+
+
+					</tbody>
+				</table>
+		</form>
+
 		</div>
 	</body>
 </html>

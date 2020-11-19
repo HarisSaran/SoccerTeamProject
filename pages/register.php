@@ -27,6 +27,7 @@
 <html>
 	<head>
 		<script src="../javascripts/logout.js" ></script>
+		<script src="../javascripts/clearForm.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
 		
@@ -39,7 +40,7 @@
 		?>
 		<?php //echo json_encode($validateResult); ?>
 		<div align="center" >
-			 <form id="register-form" class="form-class" method="post" action="./register.php">
+			 <form id="register-form" name="register-form" class="form-class" method="post" action="./register.php">
 				 <table >
 					 <caption>Register as Member</caption>
 					 <tbody >
@@ -69,30 +70,69 @@
 					</td>
 					</tr>
 					<tr>
-					<td><label>Phone Number: </label></td><td><input type="text" name="phoneNumber">
-						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"phoneNumber") ?></label></td>
+					<td><label>Phone Number: </label></td>
+					<td>
+						<!-- fields wont errase -->
+						<input 
+						    value="<?php echo (isset($_POST["phoneNumber"]))? $_POST["phoneNumber"]:null;?>" 
+							type="text" 
+							name="phoneNumber"
+						/>
+						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"phoneNumber") ?></label>
+					</td>
 					</tr>
 					<tr>
-					<td><label>Email Address: </label></td><td><input type="text" name="emailAddress">
-						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"email") ?></label></td>
+					<td><label>Email Address: </label></td>
+					<td>
+						<input 
+							value="<?php echo (isset($_POST["emailAddress"]))? $_POST["emailAddress"]:null;?>" 
+							type="text"
+						 	name="emailAddress"
+						 />
+						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"email") ?></label>
+					</td>
 					</tr>
 					<tr>
-					<td><label>Address: </label></td><td><input type="text" name="address">
+					<td>
+						<label>Address: </label>
+					</td>
+					<td>
+						<input 
+							value="<?php echo (isset($_POST["address"]))? $_POST["address"]:null;?>"
+							type="text"
+							name="address"
+						/>
 						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"address") ?></label></td>
 					</tr>
 					<tr>
-					<td><label>User Name: </label></td><td><input type="text" name="userName">
+					<td>
+						<label>User Name: </label>
+					</td>
+					<td>
+						<input 
+							value="<?php echo (isset($_POST["userName"]))? $_POST["userName"]:null;?>"
+							type="text"
+						 	name="userName"
+						 />
 						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"userName") ?></label></td>
 					</tr>
 					<tr>
-					 <td><label>Password: </label></td><td><input type="Password" name="password">
+					 <td>
+						 <label>Password: </label>
+						</td>
+						<td>
+							<input
+								value="<?php echo (isset($_POST["password"]))? $_POST["password"]:null;?>"
+							 	type="Password" 
+								name="password"
+							 />
 						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"password") ?></label></td>
 					</tr>
 					<tr>
 						<td>
 							<input onClick="document.getElementById('submiting').value='true';" type="submit" value="Submit" /> </td>
 							<input  type="hidden" value="false" id="submiting" name="submiting" /> </td>
-						<td><input type="reset" value="Reset"/></td>
+						<td><input type="reset" onClick="clearForm('register-form')" value="Reset"/></td>
 					</tr>   
 					</tbody>
 				</table>

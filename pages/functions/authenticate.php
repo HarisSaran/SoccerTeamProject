@@ -39,6 +39,8 @@ $row = $statement->fetch();
 $dbpassword = $row['password'];
 $salt = $row['salt'];
 
+//
+
 if(isPasswordValid($dbpassword,$password,$salt)){
 	$userType= $row['usertype'];
 	createCookie($userType);

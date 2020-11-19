@@ -1,3 +1,6 @@
+// adds the selected playerID to the list of playersID
+// work in progress
+
 function playerSelected(element){
     let playerId = element.id.split("-")[1];
     let players = document.getElementById("players");

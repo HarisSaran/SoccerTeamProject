@@ -1,5 +1,7 @@
 
 <?php
+//Validate info passed into member form and display error message if empty field or if incorrect input.
+
 require("passwordManager.php");
 
 
@@ -7,8 +9,9 @@ require("passwordManager.php");
 // Pass the form information into variables and sanatize
 function saveToDatabase($connection){
    $submiting = (isset($_POST["firstName"]))? $_POST["submiting"]:null;
+   //prevents from showing errors on first load, errors should only be shown after submitting 
    if($submiting == null or $submiting == 'false')return;
-   
+
    $firstName=(isset($_POST["firstName"]))? $_POST["firstName"]:null;
    $firstName = filter_var($firstName, FILTER_SANITIZE_STRING);
 
@@ -74,7 +77,16 @@ function validateForm($firstName, $lastName, $phoneNumber, $emailAddress, $addre
       $ret->valid = false;
       array_push($ret->errors, $error);
    }else{
-      //validate characterc
+      $containsDigit   = preg_match('/\d/',          $firstName);
+      $containsSpecial = preg_match('/[^a-zA-Z\d]/', $firstName);
+      if( $containsDigit or $containsSpecial ){
+         $error = array(
+            "element" => "firstName",
+            "message" => "Cannot contain special characters or numbers",
+         );
+         $ret->valid = false;
+         array_push($ret->errors, $error);
+      }
    }
 
    if ($lastName == null or $lastName == "") {
@@ -85,9 +97,17 @@ function validateForm($firstName, $lastName, $phoneNumber, $emailAddress, $addre
       $ret->valid = false;
       array_push($ret->errors, $error);
    }else{
-      //validate characterc
-   }
-
+      $containsDigit   = preg_match('/\d/',          $lastName);
+      $containsSpecial = preg_match('/[^a-zA-Z\d]/', $lastName);
+      if( $containsDigit or $containsSpecial ){
+         $error = array(
+            "element" => "lastName",
+            "message" => "Cannot contain special characters or numbers",
+         );
+         $ret->valid = false;
+         array_push($ret->errors, $error);
+       }
+      }
    if ($phoneNumber == null or $phoneNumber == "") {
       $error = array(
          "element" => "phoneNumber",
@@ -96,8 +116,15 @@ function validateForm($firstName, $lastName, $phoneNumber, $emailAddress, $addre
       $ret->valid = false;
       array_push($ret->errors, $error);
    }else{
-      //validate number
-   }
+      if(!preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $phoneNumber)) {
+         $error = array(
+            "element" => "phoneNumber",
+            "message" => "Can only contain numbers",
+         );
+         $ret->valid = false;
+         array_push($ret->errors, $error);
+       }  
+    }
 
    if ($address == null or $address == "") {
       $error = array(
