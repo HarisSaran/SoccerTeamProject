@@ -44,12 +44,29 @@
 					 <caption>Register as Member</caption>
 					 <tbody >
 					<tr>
-						<td><label>First Name: </label></td><td><input type="text" name="firstName" id="firstName">
+						<td>
+							<label>First Name: </label>
+						</td>
+						<td>
+							<input type="text" 
+								value="<?php echo (isset($_POST["firstName"]))? $_POST["firstName"]:null;?>" 
+								name="firstName" 
+								id="firstName" 
+							/>
 						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"firstName") ?></label></td>
 					</tr>
 					<tr>
-					<td><label>Last Name: </label></td><td><input type="text" name="lastName" id="lastName">
-						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"lastName") ?></label></td>
+					<td>
+						<label>Last Name: </label>
+					</td>
+					<td>
+						<input type="text" 
+						    value="<?php echo (isset($_POST["lastName"]))? $_POST["lastName"]:null;?>" 
+							name="lastName" 
+							id="lastName" 
+						/>
+						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"lastName") ?></label>
+					</td>
 					</tr>
 					<tr>
 					<td><label>Phone Number: </label></td><td><input type="text" name="phoneNumber">
@@ -71,7 +88,12 @@
 					 <td><label>Password: </label></td><td><input type="Password" name="password">
 						<label style="font-size:10px;color:red"><?php echo getErrorMessage($validateResult,"password") ?></label></td>
 					</tr>
-					<tr><td><input type="submit" value="Submit" /> </td><td><input type="reset" value="Reset"/></td></tr>   
+					<tr>
+						<td>
+							<input onClick="document.getElementById('submiting').value='true';" type="submit" value="Submit" /> </td>
+							<input  type="hidden" value="false" id="submiting" name="submiting" /> </td>
+						<td><input type="reset" value="Reset"/></td>
+					</tr>   
 					</tbody>
 				</table>
    			 </form>
