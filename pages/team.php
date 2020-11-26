@@ -21,15 +21,15 @@
 	<head>
 		<!--script src="../javascripts/selectPlayer.js"></script-->
 		<script src="../javascripts/logout.js" ></script>
-		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
-		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
+		<link rel="stylesheet" href="../cssStyles/menu.css"  type="text/css"/>
+		<link rel="stylesheet" href="../cssStyles/teams.css" type="text/css" />
 	</head>
 	<body class="body_bg">
 		<?php
 		  echo getMenu();
 		?>
 		<div align="center">
-        <form id="team-form" class="form-class" method="post" action="./team.php">
+        <form id="team-form" class="team-form-class" method="post" action="./team.php">
 				 <table>
 					 <caption>Add Team</caption>
 					 <tbody>

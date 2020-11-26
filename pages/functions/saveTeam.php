@@ -1,6 +1,6 @@
 <?php
 
-
+    // save the team to the database
     function saveTeamToDatabase($connection){
         
         $teamName=(isset($_POST["teamName"]))? $_POST["teamName"]:null;

@@ -1,6 +1,6 @@
 <?php
 
-
+    // saves the league intered into the database
     function saveLeagueToDatabase($connection){
         $leagueName=(isset($_POST["leagueName"]))? $_POST["leagueName"]:null;
         $worldRank=(isset($_POST["worldRank"]))? $_POST["worldRank"]:null;

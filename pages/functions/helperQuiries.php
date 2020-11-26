@@ -1,4 +1,9 @@
+
 <?php
+
+    //Contains functions to get objects from the database
+
+    // returns all leagues in the databse
     function getLeagues($connection){
         $query = "SELECT leagueID as id, leagueName as name FROM leagues";
 
@@ -9,6 +14,7 @@
         return $leagues;
     }
 
+    // returns all persons in person table which have the personTypeID that is eaqual to the coachID
     function getCoaches($connection){
         $query = "SELECT personID as id, concat(`firstName`,' ',`lastName`) as name FROM persons WHERE personTypeID = :coachID";
 
@@ -21,6 +27,7 @@
         return $coaches;
     }
 
+    // returns all persons from person table which have person type id of the player
     function getPlayers($connection){
         //WHERE personTypeID = :playerID
         $query = "SELECT personID as id, concat(`firstName`,' ',`lastName`) as name FROM persons ";

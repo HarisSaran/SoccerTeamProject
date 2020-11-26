@@ -1,5 +1,5 @@
 <?php
-     
+     // Save the player into the database
      // Pass the form information into variables
      function savePlayerToDatabase($connection){
         $firstName=(isset($_POST["firstName"]))? $_POST["firstName"]:null;

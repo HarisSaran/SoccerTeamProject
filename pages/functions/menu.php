@@ -1,5 +1,6 @@
 
 <?php
+
    function displayLogout(){
     $cookie_name = 'userLogedIn';
     $isset = isset($_COOKIE[$cookie_name]);
@@ -16,6 +17,7 @@ function getUserType(){
     $ival = $_COOKIE[$cookie_name];
     return $ival;
 }
+
 
 function getMenu(){
 

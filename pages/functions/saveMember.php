@@ -48,6 +48,8 @@ function saveToDatabase($connection){
 }
 
 
+// here we validate the fields in the form
+
 function validateForm($firstName, $lastName, $phoneNumber, $emailAddress, $address, $userName, $password) {
 		
    // $ret = json_encode((object) null); //{"valid":true,"errors": [],};

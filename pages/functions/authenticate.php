@@ -22,7 +22,8 @@ $password = $_POST['user_pass'];
 // if the username and password are admin admin then set $admin variable to true (temporary)
 
 // CHECK FOR THE RECORD FROM TABLE
-$query = "SELECT p.userPassword as password,p.salt as salt,pt.description as usertype FROM Persons p INNER JOIN PersonTypes pt ON pt.personTypeID=p.personTypeID WHERE p.userID='$username'";
+$query = "SELECT p.userPassword as password,p.salt as salt,pt.description as usertype 
+FROM Persons p INNER JOIN PersonTypes pt ON pt.personTypeID=p.personTypeID WHERE p.userID='$username'";
 //and userPasswrod='$password'
 // the result will contain the rows of the $query 
 // if the user exists the $query will return only one row
