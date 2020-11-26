@@ -44,7 +44,7 @@
     // returns all teams in the databsae
     // t.teamLogo as logo,
     function getTeams($connection){
-        $query = "SELECT t.teamName as tName, t.teamRank as tRank, l.leagueName as lName, l.Country as country,
+        $query = "SELECT t.teamID as teamID, t.teamName as tName, t.teamRank as tRank, l.leagueName as lName, l.Country as country,
         concat(p.firstName, ' ' ,p.lastName) as coachName
         FROM Teams t
         INNER JOIN Leagues l ON l.leagueID=t.leagueID
@@ -59,5 +59,22 @@
 
     }
 
+    function deleteTeamPHP($connection, $teamID){
+
+        $sql = 'DELETE FROM teams  WHERE teamID = :teamID';
+        $q = $connection->prepare($sql);
+        return $q->execute([':teamID' => $teamID]);
+    }
+
+    function getTeam($connection,$teamId){
+        $query = "SELECT t.teamAddress as tAddress, t.teamName as tName, t.teamRank as tRank,t.coachID as coachID,t.leagueID as leagueID 
+        FROM Teams t
+        WHERE t.teamID=:teamID";
+        $statement = $connection->prepare($query); 
+        $statement->bindValue(':teamID', $teamId);     
+        $statement->execute();
+        $teams= $statement->fetchAll();
+        return $teams[0];
+    }
     
 ?>

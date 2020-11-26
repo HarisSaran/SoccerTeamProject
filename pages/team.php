@@ -1,11 +1,31 @@
 <?php 
-// every page that requires a login requires
- require('functions/login.php');
- require('functions/menu.php');
 
- require('functions/db_connect.php');
- require('functions/saveTeam.php');
- require('functions/helperQuiries.php');
+// every page that requires a login requires
+require('functions/login.php');
+require('functions/menu.php');
+
+require('functions/db_connect.php');
+require('functions/saveTeam.php');
+require('functions/helperQuiries.php');
+
+if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on'){
+	$url = "https://"; 
+}else{
+	$url = "http://";  
+}   
+// Append the host(domain name, ip) to the URL.   
+$url.= $_SERVER['HTTP_HOST'];   
+// Append the requested resource location to the URL   
+$url.= $_SERVER['REQUEST_URI'];    
+
+ $url_components = parse_url($url); 
+ $word = "?";
+ $team = null;
+ if(strpos($url, $word) !== false){
+	parse_str($url_components['query'], $params); 
+	 $teamId = $params['teamId'];
+	 $team = getTeam($connection,$teamId);
+ }
 
 	$leagues = getLeagues($connection);
 	$coaches = getCoaches($connection);
@@ -22,16 +42,24 @@
 		<!--script src="../javascripts/selectPlayer.js"></script-->
 		<script src="../javascripts/logout.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css"  type="text/css"/>
-		<link rel="stylesheet" href="../cssStyles/teams.css" type="text/css" />
+		<link rel="stylesheet" href="../cssStyles/login.css" type="text/css" />
 	</head>
 	<body class="body_bg">
 		<?php
 		  echo getMenu();
 		?>
-		<div align="center">
-        <form id="team-form" class="team-form-class" method="post" action="./team.php">
+		<div align="center" >
+        <form id="team-form" class="form-class" method="post" action="./team.php">
 				 <table>
-					 <caption>Add Team</caption>
+					 <caption>
+						 <?php 
+					 		if($team == null){
+								 echo "Add Team"; 
+							}else{ 
+								echo "Edit Team ".$team['tName'];
+							}
+					 	?>
+					 </caption>
 					 <tbody>
 					<tr>
 						<td>
@@ -39,7 +67,14 @@
 						</td>
 
 						<td>
-							<input type="text" name="teamName" id="teamName"/>
+						<input type="text" name="teamName" id="teamName" value="<?php 
+							if($team == null){
+								echo "";
+							} else{
+								echo $team['tName'];
+							} 
+							?>"
+						/>
 						</td>
 					</tr>
 
@@ -49,7 +84,7 @@
 						</td>
 
 						<td>
-							<input type="text" name="teamRank" id="teamRank"/>
+							<input type="text" name="teamRank" id="teamRank" value="<?php if($team != null)echo $team['tRank'];?>"/>
 						</td>
 						
 					</tr>
@@ -59,7 +94,7 @@
 							<label>Team Address: </label>
 						</td>
 						<td>
-							<input type="text" name="teamAddress" id="teamAddress"/>
+							<input type="text" name="teamAddress" id="teamAddress" value="<?php if($team != null)echo $team['tAddress'];?>"/>
 						</td>
 						
 					</tr>
@@ -79,9 +114,14 @@
 							<label>Select League:</label>
 						</td>
 						<td>
-							<select name= "leagueID">
+							<select name= "leagueID" >
 								<?php foreach($leagues as $league): ?>
-								<option value="<?= $league['id'] ?>"> <?= $league['name'] ?></option>
+								<option <?php 
+									if($team != null){
+										if($league['id'] == $team['leagueID']){
+											echo 'selected';
+										}
+									 }?> value="<?= $league['id'] ?>"> <?= $league['name'] ?></option>
 								<?php endforeach ?>
 							</select>
 						</td>	
@@ -94,7 +134,12 @@
 						<td>
 							<select name= "coachID">
 								<?php foreach($coaches as $coach): ?>
-								<option value="<?= $coach['id'] ?>"> <?= $coach['name'] ?></option>
+								   <option <?php 
+									if($team != null){
+										if($coach['id'] == $team['coachID']){
+											echo 'selected';
+										}
+									 }?> value="<?= $coach['id'] ?>"> <?= $coach['name'] ?></option>
 								<?php endforeach ?>
 							</select>
 						</td>	
