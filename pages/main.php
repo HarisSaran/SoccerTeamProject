@@ -10,8 +10,11 @@ require('functions/helperQuiries.php');
 
 	if(isset($_POST['editTeamID'])){
 		$teamId = $_POST['editTeamID'];
-		header("Location: ../pages/team.php?teamId=".$teamId);
-        exit();
+		if($teamId != null){
+			header("Location: ../pages/team.php?teamId=".$teamId);
+			exit();
+		}
+		
 	}
 
 
@@ -21,10 +24,14 @@ require('functions/helperQuiries.php');
 	}
 	if(isset($_POST['deleteTeamID'])){
 		$teamID = $_POST['deleteTeamID'];
-		$deleted = deleteTeamPHP($connection, $teamID);
+		if($teamID != null){
+			$deleted = deleteTeamPHP($connection, $teamID);
+		}
 	}
+		$teams = getTeams($connection);
 	
-	$teams = getTeams($connection);
+	
+	
 ?>
 
 	
@@ -58,8 +65,8 @@ require('functions/helperQuiries.php');
 		?>
 		<div align="center" width="100%">
 		<form  id="teams-form" name="teams-form" class="team-form-class" method="post" action="./main.php"  width="100%">
-			<input type="hidden" name="deleteTeamID" id="deleteTeamID" value="<?=''?>" />
-			<input type="hidden" name="editTeamID" id="editTeamID" value="<?=''?>" />
+			<input type="hidden" name="deleteTeamID" id="deleteTeamID" value="<?=null?>" />
+			<input type="hidden" name="editTeamID" id="editTeamID" value="<?=null?>" />
 
 				 <table  width="100%" >
 					 <caption>Registered Teams</caption>

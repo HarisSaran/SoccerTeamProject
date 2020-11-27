@@ -21,18 +21,35 @@ $url.= $_SERVER['REQUEST_URI'];
  $url_components = parse_url($url); 
  $word = "?";
  $team = null;
+ $mode = "new";
  if(strpos($url, $word) !== false){
 	parse_str($url_components['query'], $params); 
 	 $teamId = $params['teamId'];
 	 $team = getTeam($connection,$teamId);
+	 $mode = "edit";
  }
 
 	$leagues = getLeagues($connection);
 	$coaches = getCoaches($connection);
 	$players = getPlayers($connection);
 
-    isUserLogedIn();
-    saveTeamToDatabase($connection);
+	isUserLogedIn();
+	if(isset($_POST['mode'])){
+		$edit = $_POST['mode'];
+		// echo $edit;
+		if($edit == "new"){
+			saveTeamToDatabase($connection);
+		}else {//if($edit == "edit"){
+			
+			$updateId = $_POST['updateId'];
+			$var=updateTeamInDatabase($connection,$updateId);
+			echo $var;
+		}
+		// else{
+		// 	// error this should not happen
+		// }
+	}
+    
 	
 ?>
 
@@ -43,6 +60,16 @@ $url.= $_SERVER['REQUEST_URI'];
 		<script src="../javascripts/logout.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css"  type="text/css"/>
 		<link rel="stylesheet" href="../cssStyles/login.css" type="text/css" />
+		<script>
+			function updateMode(elm){
+				let title = elm.value;
+				let mode = "edit";
+				if(title == "Save"){
+					mode = "new";
+				}
+				document.getElementById("mode").value = mode; 
+			}
+		</script>
 	</head>
 	<body class="body_bg">
 		<?php
@@ -50,6 +77,8 @@ $url.= $_SERVER['REQUEST_URI'];
 		?>
 		<div align="center" >
         <form id="team-form" class="form-class" method="post" action="./team.php">
+			<input type="hidden" name="mode" id="mode" value="<?=$mode?>" />
+			<input type="hidden" name="updateId" id="updateId" value="<?=($mode == "edit")?$teamId:null?>" />
 				 <table>
 					 <caption>
 						 <?php 
@@ -163,7 +192,7 @@ $url.= $_SERVER['REQUEST_URI'];
 
 					<tr>
 						<td>
-						<input type="submit" value="Submit" />
+							<input onClick="updateMode(this);" type="submit" value="<?=($mode == "new")?"Save":"Update"?>" />
 						</td>
 
 						<td>
