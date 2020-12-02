@@ -18,7 +18,7 @@ function getUserType(){
     return $ival;
 }
 
-
+// <a onClick="goToPage(\'comments.php\')">Create Comment</a>
 function getMenu(){
 
     if(displayLogout()){
@@ -33,8 +33,10 @@ function getMenu(){
         <div style="height: 60px;">
         <nav> 
             <a onClick="goToPage(\'main.php\')">Go To Main</a>
-            <a href="#">About</a>
+            <a onClick="goToPage(\'comments.php\')">Comment</a>
+           
             <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
+
     }else{
         $menu= '
         <div style="height: 60px;">
