@@ -1,5 +1,6 @@
 
 <?php
+
    function displayLogout(){
     $cookie_name = 'userLogedIn';
     $isset = isset($_COOKIE[$cookie_name]);
@@ -17,26 +18,30 @@ function getUserType(){
     return $ival;
 }
 
+// <a onClick="goToPage(\'comments.php\')">Create Comment</a>
 function getMenu(){
 
     if(displayLogout()){
         $endMenue='<div class="animation start-home"></div></nav></div>';
         $additionalMenue = '';
         if(getUserType()=="admin"){
-            $additionalMenue ='<a href="#">Add League</a>
-            <a href="#">Add Team</a>';
+            $additionalMenue ='<a onClick="goToPage(\'league.php\')">Add League</a>
+                               <a onClick="goToPage(\'team.php\')">Add Team</a>
+                               <a onClick="goToPage(\'player.php\')">Add Player</a>';
         }
         $menu= '
         <div style="height: 60px;">
         <nav> 
-            <a onClick="goToPage(\'index.php\')">Home</a>
-            <a href="#">About</a>
+            <a onClick="goToPage(\'main.php\')">Go To Main</a>
+            <a onClick="goToPage(\'comments.php\')">Comment</a>
+           
             <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
+
     }else{
         $menu= '
         <div style="height: 60px;">
         <nav> 
-            <a onClick="goToPage(\'index.php\')">Home</a>
+            <a onClick="goToPage(\'main.php\')">Go To Main</a>
             <a href="#">About</a>
             <a onClick="goToPage(\'soccerLogin.php\')">Login</a>
             <a onClick="goToPage(\'register.php\')">Register</a>

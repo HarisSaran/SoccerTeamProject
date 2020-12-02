@@ -6,13 +6,13 @@
 // $salt=randomSalt();
 // $encriptedPassword= getEncriptedPassword($password,$salt);
 
-$cookie_name = 'userLogedIn';
-$isset = isset($_COOKIE[$cookie_name]);
-$value = ($isset)?$_COOKIE[$cookie_name]:"";
-if($isset) {
-    header("Location: pages/haris_test.php");
-    exit();
-}
+// $cookie_name = 'userLogedIn';
+// $isset = isset($_COOKIE[$cookie_name]);
+// $value = ($isset)?$_COOKIE[$cookie_name]:"";
+// if($isset) {
+//     header("Location: pages/haris_test.php");
+//     exit();
+// }
 
 ?>
 
@@ -22,11 +22,11 @@ if($isset) {
 <title>SOCCER LOGIN FORM</title>
 <link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
 </head>
-<body id="body_bg">
+<body class="body_bg">
 <div align="center">
 
 <h3>SOCCER LOGIN FORM</h3>
-    <form id="login-form" method="post" action="../database/authenticate.php" >
+    <form class="form-class" method="post" action="functions/authenticate.php" >
         <table border="0.5" >
             <tr>
                 <td><label for="user_id">User Name</label></td>

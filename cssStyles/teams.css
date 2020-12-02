@@ -1,0 +1,28 @@
+
+
+
+.team-form-class{ 
+
+    background:#A9D0F5; 
+    padding:9px 9px;
+    width:850px; 
+     border-radius:5px; 
+    }
+
+    .body_bg
+    { 
+        background-color:#897ab6; 
+    }
+
+    .mainform-class{ 
+
+        background:#A9D0F5; 
+    
+        padding:9px 9px;
+        width:850px; 
+         border-radius:5px; 
+        }
+
+        tr:nth-child(odd){
+            background-color: #F2F2F2;
+        }

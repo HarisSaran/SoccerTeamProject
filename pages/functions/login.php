@@ -1,5 +1,6 @@
 <?php
 
+// returns true if cookie with the name userLogedIn exists
 function isUserLogedIn(){
     $cookie_name = 'userLogedIn';
     $logout = false;
