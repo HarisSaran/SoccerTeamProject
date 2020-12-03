@@ -3,13 +3,41 @@
  require('functions/menu.php');
  require('functions/saveMember.php');
  require('functions/db_connect.php');
+ require_once("functions/recaptchalib.php");
 
- if($connection){
-	$validateResult = saveToDatabase($connection);
- }
- 
+ $reCaptchaMessage=false;
+ $submiting = (isset($_POST["submiting"]))? $_POST["submiting"]:null;
+$response = null;
+$captcha = null;
+
+if (isset($_POST["g-recaptcha-response"])) {
+	 $captcha=$_POST['g-recaptcha-response'];
+}
+$validateResult = null;
+$response = null;
+if($captcha !=null){
+	$secretKey = "6LdM4fYZAAAAAAeX0cETRKNLDKDMonGL-8U0TuCs";
+	$ip = $_SERVER['REMOTE_ADDR'];
+	// post request to server
+	$url = 'https://www.google.com/recaptcha/api/siteverify?secret=' . urlencode($secretKey) .  '&response=' . urlencode($captcha);
+	$response_file = file_get_contents($url);
+	$responseKeys = json_decode($response_file,true);
+	// should return JSON with success as true
+	$response = $responseKeys["success"];
+}
+
+if ($response != null && $response) {
+	if($connection){
+		$validateResult = saveToDatabase($connection);
+	 }
+  } else {
+	if ($submiting !=null){
+		$reCaptchaMessage = true;
+	}
+  }
 
  function getErrorMessage($json,$element){
+	 if($json == null) return "";
 	 if($json){
 		if(!$json->valid){
 			 $errors = $json->errors;
@@ -30,8 +58,16 @@
 		<script src="../javascripts/clearForm.js" ></script>
 		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
-		
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+<?php
 
+ if($reCaptchaMessage){
+	 echo "<script>alert('Please verify yourself as human');</script>";
+ }else{
+
+ }
+
+?>
 	</head>
 	<body id="body_bg" class="body_bg">
 
@@ -41,6 +77,8 @@
 		<?php //echo json_encode($validateResult); ?>
 		<div align="center" >
 			 <form id="register-form" name="register-form" class="form-class" method="post" action="./register.php">
+			 
+
 				 <table >
 					 <caption>Register as Member</caption>
 					 <tbody >
@@ -133,9 +171,17 @@
 							<input onClick="document.getElementById('submiting').value='true';" type="submit" value="Submit" /> </td>
 							<input  type="hidden" value="false" id="submiting" name="submiting" /> </td>
 						<td><input type="reset" onClick="clearForm('register-form')" value="Reset"/></td>
-					</tr>   
+					</tr> 
+					<tr>
+
+ 						<td></td>
+ 						<td>
+							<div class="g-recaptcha" data-sitekey="6LdM4fYZAAAAAK14SDBRjj20M_MR2jmown5VPVeP"></div>
+ 						</td>
+					</tr>  
 					</tbody>
 				</table>
+
    			 </form>
 		</div>
 	</body>

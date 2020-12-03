@@ -8,7 +8,7 @@ require("passwordManager.php");
 
 // Pass the form information into variables and sanatize
 function saveToDatabase($connection){
-   $submiting = (isset($_POST["firstName"]))? $_POST["submiting"]:null;
+   $submiting = (isset($_POST["submiting"]))? $_POST["submiting"]:null;
    //prevents from showing errors on first load, errors should only be shown after submitting 
    if($submiting == null or $submiting == 'false')return;
 
@@ -118,7 +118,7 @@ function validateForm($firstName, $lastName, $phoneNumber, $emailAddress, $addre
       $ret->valid = false;
       array_push($ret->errors, $error);
    }else{
-      if(!preg_match("/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/", $phoneNumber)) {
+      if(!preg_match("/^\d+$/", $phoneNumber)) {
          $error = array(
             "element" => "phoneNumber",
             "message" => "Can only contain numbers",
