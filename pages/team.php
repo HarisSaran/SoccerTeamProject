@@ -43,7 +43,7 @@ $url.= $_SERVER['REQUEST_URI'];
 			
 			$updateId = $_POST['updateId'];
 			$var=updateTeamInDatabase($connection,$updateId);
-			echo $var;
+			// echo $var;
 		}
 		// else{
 		// 	// error this should not happen
@@ -76,7 +76,7 @@ $url.= $_SERVER['REQUEST_URI'];
 		  echo getMenu();
 		?>
 		<div align="center" >
-        <form id="team-form" class="form-class" method="post" action="./team.php">
+        <form id="team-form" class="form-class" method="post" action="./team.php" enctype="multipart/form-data">
 			<input type="hidden" name="mode" id="mode" value="<?=$mode?>" />
 			<input type="hidden" name="updateId" id="updateId" value="<?=($mode == "edit")?$teamId:null?>" />
 				 <table>
@@ -133,7 +133,7 @@ $url.= $_SERVER['REQUEST_URI'];
 							<label>Team Logo: </label>
 						</td>
 						<td>
-							<input multiple="false" type="file" name="teamLogo" id="teamLogo"/>
+							<input type="file" name="teamLogo" id="teamLogo"/>
 						</td>
 						
 					</tr>

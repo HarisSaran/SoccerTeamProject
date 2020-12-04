@@ -73,6 +73,7 @@ require('functions/helperQuiries.php');
 					 <thead>
 						<tr>
 						<!-- <th>Logo</th> -->
+						<th>Logo</th>
 						<th>Name</th>
 						<th>Rank</th>
 						<th>League</th>
@@ -86,6 +87,9 @@ require('functions/helperQuiries.php');
 
 					 <?php foreach($teams as $team): ?>
 						<tr>
+						<td>
+						  <img height="50px" width="50px" src="data:image/jpeg;charset=utf8;base64,<?php echo base64_encode($team["teamLogo"]); ?> " />
+						</td>
 						<td><?=$team["tName"]?></td>
 						<td><?=$team["tRank"]?></td>
 						<td><?=$team["lName"]?></td>
