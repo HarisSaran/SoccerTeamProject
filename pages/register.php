@@ -56,7 +56,7 @@ if ($response != null && $response) {
 	<head>
 		<script src="../javascripts/logout.js" ></script>
 		<script src="../javascripts/clearForm.js" ></script>
-		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
+		<!-- <link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/> -->
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 		<!-- bootstrap -->

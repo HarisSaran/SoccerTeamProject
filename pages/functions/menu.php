@@ -22,20 +22,37 @@ function getUserType(){
 function getMenu(){
 
     if(displayLogout()){
-        $endMenue='<div class="animation start-home"></div></nav></div>';
+        // $endMenue='<div class="animation start-home"></div></nav></div>';
+        $endMenue='</nav></div>';
         $additionalMenue = '';
         if(getUserType()=="admin"){
-            $additionalMenue ='<a onClick="goToPage(\'league.php\')">Add League</a>
-                               <a onClick="goToPage(\'team.php\')">Add Team</a>
-                               <a onClick="goToPage(\'player.php\')">Add Player</a>';
+            // $additionalMenue ='<a onClick="goToPage(\'league.php\')">Add League</a>
+            //                    <a onClick="goToPage(\'team.php\')">Add Team</a>
+            //                    <a onClick="goToPage(\'player.php\')">Add Player</a>';
+            $additionalMenue ='
+            <button class="btn btn-outline-success" type="button"  onClick="goToPage(\'league.php\')">Add League</button>
+            <button class="btn btn-outline-success" type="button" onClick="goToPage(\'team.php\')">Add Team</button>
+            <button class="btn btn-outline-success" type="button" onClick="goToPage(\'player.php\')">Add Player</button>
+            ';
         }
+        // $menu= '
+        // <div style="height: 60px;">
+        // <nav> 
+        //     <a onClick="goToPage(\'main.php\')">Go To Main</a>
+        //     <a onClick="goToPage(\'comments.php\')">Comment</a>
+        // 
+        //     <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
         $menu= '
-        <div style="height: 60px;">
-        <nav> 
-            <a onClick="goToPage(\'main.php\')">Go To Main</a>
-            <a onClick="goToPage(\'comments.php\')">Comment</a>
-           
-            <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
+        <div style="height:60px; margin-left:30%;">
+        <nav class="navbar navbar-light bg-light>  
+        `<form class="form-inline" >
+            <button class="btn btn-outline-success" type="button"  onClick="goToPage(\'main.php\')">Go To Main</button>
+            <button class="btn btn-outline-success" type="button" onClick="goToPage(\'comments.php\')">Comment</button>
+            <button class="btn btn-outline-success" type="button" onClick="logout()">Logout</button>
+        </form>
+           '
+            
+            .$additionalMenue.$endMenue; 
 
     }else{
         // $menu= '
@@ -50,7 +67,7 @@ function getMenu(){
         // </div>
         // ';
 
-        $menu= ' <div style="height: 60px;"><nav class="navbar navbar-light bg-light">
+        $menu= ' <div style="height: 60px;margin-left:30%;"><nav class="navbar navbar-light bg-light">
                     <form class="form-inline">
                         <button class="btn btn-outline-success" type="button"  onClick="goToPage(\'main.php\')">Go To Main</button>
                         <button class="btn btn-outline-success" type="button" onClick="goToPage(\'soccerLogin.php\')">Login</button>

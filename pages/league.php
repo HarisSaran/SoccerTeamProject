@@ -20,7 +20,7 @@
 <html>
 	<head>
 		<script src="../javascripts/logout.js" ></script>
-		<link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/>
+		<!-- <link rel="stylesheet" href="../cssStyles/menu.css" type="text/css"/> -->
 		<link rel="stylesheet" type="text/css" href="../cssStyles/login.css">
 		<!-- bootstrap -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
