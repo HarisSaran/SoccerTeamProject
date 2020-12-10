@@ -45,7 +45,7 @@
     // t.teamLogo as logo,
     function getTeams($connection){
         $query = "SELECT t.teamID as teamID, t.teamName as tName, t.teamRank as tRank, l.leagueName as lName, l.Country as country,
-        concat(p.firstName, ' ' ,p.lastName) as coachName
+        concat(p.firstName, ' ' ,p.lastName) as coachName, t.teamLogo as teamLogo 
         FROM Teams t
         INNER JOIN Leagues l ON l.leagueID=t.leagueID
         INNER JOIN Persons p on p.personID=t.coachID;";
