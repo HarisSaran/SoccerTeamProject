@@ -38,20 +38,39 @@ function getMenu(){
             <a onClick="logout()" href="#">Logout</a>'.$additionalMenue.$endMenue; 
 
     }else{
-        $menu= '
-        <div style="height: 60px;">
-        <nav> 
-            <a onClick="goToPage(\'main.php\')">Go To Main</a>
-            <a href="#">About</a>
-            <a onClick="goToPage(\'soccerLogin.php\')">Login</a>
-            <a onClick="goToPage(\'register.php\')">Register</a>
-            <div class="animation start-home"></div>
-        </nav>
-        </div>
-        ';
+        // $menu= '
+        // <div style="height: 60px;">
+        // <nav> 
+        //     <a onClick="goToPage(\'main.php\')">Go To Main</a>
+        //     <a href="#">About</a>
+        //     <a onClick="goToPage(\'soccerLogin.php\')">Login</a>
+        //     <a onClick="goToPage(\'register.php\')">Register</a>
+        //     <div class="animation start-home"></div>
+        // </nav>
+        // </div>
+        // ';
+
+        $menu= ' <div style="height: 60px;"><nav class="navbar navbar-light bg-light">
+                    <form class="form-inline">
+                        <button class="btn btn-outline-success" type="button"  onClick="goToPage(\'main.php\')">Go To Main</button>
+                        <button class="btn btn-outline-success" type="button" onClick="goToPage(\'soccerLogin.php\')">Login</button>
+                        <button class="btn btn-outline-success" type="button" onClick="goToPage(\'register.php\')">Register</button>
+                    </form>
+                </nav></div>';
+
     }
     
     return $menu;
 }
+
+// <nav class="navbar navbar-light bg-light">
+//   <form class="form-inline">
+//     <button class="btn btn-outline-success" type="button">Main button</button>
+//     <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+//   </form>
+// </nav>
+
 ?> 
+
+
 
